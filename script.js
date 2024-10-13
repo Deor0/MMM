@@ -29,10 +29,18 @@ function addContent(headers) {
     addContentTools();
   } else if (headers === "about") {
     addContentAbout();
+<<<<<<< HEAD
   } else if (headers === "simulator") {
     addContentSimulator();
   } else {
     console.log("No header");
+=======
+  } else if(headers == "news") {
+    addContentNews(); 
+  }
+    else {
+    console.log("Content not found");
+>>>>>>> upstream/main
   }
 }
 
@@ -304,6 +312,7 @@ function createInputField(labelText) {
 function addContentAbout() {
   let heading = document.createElement("h1");
   heading.textContent = "About Us";
+<<<<<<< HEAD
   heading.style.marginBottom = "1rem";
   heading.classList.add("headings");
   content.appendChild(heading);
@@ -317,14 +326,31 @@ function addContentAbout() {
     "Understanding inflation became crucial, not only for making sense of financial planning in 2000 but also for adapting to the new, tech-driven economy that emerged in its wake.<br>" +
     "Whether it’s recognizing the importance of data security, understanding the value of fintech innovations, or being prepared for potential disruptions, financial literacy in the digital age is essential for safeguarding your financial future.";
   paragraph.classList.add("content");
+=======
+  heading.classList.add("headings"); 
+  content.appendChild(heading);
+
+  let paragraph = document.createElement("p");
+  paragraph.innerHTML = 
+  "The Millennium Bug, also known as the Y2K bug, serves as a powerful reminder of how intertwined personal finance and technology have become.<br>"+
+  "At the turn of the millennium, the world faced a potential digital disaster because many computer systems stored dates using only the last two digits of the year.<br>" + 
+  "Though much of the potential chaos was averted, the Y2K bug highlighted how reliant our financial systems are on technology.<br>" +
+  "This historical moment emphasizes the importance of financial literacy, especially in understanding how technology shapes personal finance.<br>" + 
+  "Understanding inflation became crucial, not only for making sense of financial planning in 2000 but also for adapting to the new, tech-driven economy that emerged in its wake.<br>" + 
+  "Whether it’s recognizing the importance of data security, understanding the value of fintech innovations, or being prepared for potential disruptions, financial literacy in the digital age is essential for safeguarding your financial future.<br>" +
+  "Our mission is to empower individuals to master their financial future by bridging the past and present. Our goal is to make personal finance accessible, fun, and empowering for all, ensuring that everyone has the knowledge to thrive in today’s digital economy and beyond.";
+  paragraph.classList.add("content"); 
+>>>>>>> upstream/main
   content.appendChild(paragraph);
 }
+
 
 closeButton?.addEventListener("click", () => {
   clickSound.play();
   popUpWindow.style.visibility = "hidden";
 });
 
+<<<<<<< HEAD
 // ---------------------------------------------------------------------SIMULATOR----------------------------------------------------------------------------------------------
 
 /* <div class="game-controls">
@@ -516,3 +542,68 @@ function gameStart(gameStatus) {
 
   updateGameStatus();
 }
+=======
+function addContentNews() {
+  // Clear previous content
+  content.innerHTML = "";
+
+  // Append heading to the pop-up
+  let heading = document.createElement("h1");
+  heading.textContent = "News";
+  heading.classList.add("headings");
+  content.appendChild(heading);
+
+  // Create news section inside the pop-up
+  const newsSection = document.createElement('section');
+  newsSection.id = 'news';
+  content.appendChild(newsSection);
+
+  // Fetch and display news
+  async function fetchNews() {
+      const apiKey = 'f689821c7ab7418db7436f94da4da4a4';  // Use your own API key here
+      const url = `https://newsapi.org/v2/everything?q=finance&apiKey=${apiKey}`;
+
+      try {
+          const response = await fetch(url);
+          const data = await response.json();
+          displayNews(data.articles);
+      } catch (error) {
+          console.error('Error fetching news:', error);
+          newsSection.innerHTML = '<p>Failed to load news articles.</p>';
+      }
+  }
+
+  function displayNews(articles) {
+      if (articles.length === 0) {
+          newsSection.innerHTML += '<p>No news articles available.</p>';
+          return;
+      }
+
+      articles.forEach(article => {
+          const articleElement = document.createElement('article');
+          articleElement.classList.add('news-item');
+          articleElement.innerHTML = `
+              <h3>${article.title}</h3>
+              <p>${article.description || ''} <a href="${article.url}" target="_blank">Read more</a></p>
+          `;
+          newsSection.appendChild(articleElement);
+      });
+  }
+
+  // Fetch news when "News" section is opened
+  fetchNews();
+}
+
+// Modify the header button functionality to include the news button
+headerButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    clickSound.play();
+    popUpName.textContent = button.textContent;
+    popUpIcon.src = `/assets/${button.textContent}.png`;
+
+    // Call the corresponding content function based on button text
+    addContent(popUpName.textContent);
+    popUpWindow.style.visibility = "visible";
+  });
+});
+>>>>>>> upstream/main

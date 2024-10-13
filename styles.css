@@ -89,8 +89,14 @@ h6 {
   cursor: url("assets/cursor.png"), auto;
 }
 
-body {
+main {
   background-color: black;
+  width: 100%; 
+  height: 100vh; 
+  background-image: url(https://media.discordapp.net/attachments/1294354649989644318/1294779918466683053/360_F_819631278_hH9bHaFB4iGOV9uUNzvOb3ZyiWnTjXoA.png?ex=670c4144&is=670aefc4&hm=d02dab136ca812a8ca9e8890e85f0d761bd7705c851beca3250177061d498c59&=&format=webp&quality=lossless&width=940&height=537);
+  background-size: 100%; 
+  background-position:center; 
+  background-repeat: no-repeat;
 }
 
 main {
@@ -103,6 +109,7 @@ main {
 }
 
 .nav-bar {
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -157,8 +164,7 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  visibility: hidden;
-  border: solid black;
+  /* visibility: hidden; */
 }
 
 @keyframes gradientShift {
@@ -221,6 +227,14 @@ main {
   color: #ff00ff;
 }
 
+.text-background {
+  background-color: white; 
+  padding: 10px;          
+  border-radius: 4px;     
+  display: inline-block;   
+  margin: 10px 0;         
+}
+
 .tool-button {
   font-size: 4rem;
   padding: 1rem;
@@ -233,8 +247,33 @@ main {
 
 .pop-up-window-content {
   margin: 1rem;
+  overflow-y: auto; 
 }
 
 .big-button {
   font-size: 2rem;
 }
+
+#news {
+  background-color: white;
+  border: 2px dashed #000080;
+  margin: 20px;
+  padding: 10px;
+  overflow-y: scroll; 
+}
+
+.news-item {
+  border-bottom: 1px solid #000080;
+  padding: 10px 0;
+}
+
+.news-item h3 {
+  font-size: 1.5em;
+  color: #0f0c29;
+}
+
+.news-item a {
+  color: #000080;
+  text-decoration: underline;
+}
+
